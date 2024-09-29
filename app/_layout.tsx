@@ -1,10 +1,13 @@
 import React from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { ClerkProvider } from '@clerk/clerk-expo';
+import { ClerkLoaded, ClerkProvider } from '@clerk/clerk-expo';
 import { Slot } from 'expo-router';
 import Constants from 'expo-constants';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ActivityIndicator } from 'react-native';
+import { RootSiblingParent } from 'react-native-root-siblings';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 const tokenCache = {
   async getToken(key: string) {
@@ -36,9 +39,15 @@ if (!publishableKey || publishableKey === '') {
 export default function App() {
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
-      <SafeAreaProvider>
+      <ClerkLoaded>
+        <RootSiblingParent>
+        <SafeAreaProvider>
+        <GestureHandlerRootView>
         <Slot />
+        </GestureHandlerRootView>
       </SafeAreaProvider>
+        </RootSiblingParent>
+      </ClerkLoaded>
     </ClerkProvider>
   );
 }

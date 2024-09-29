@@ -1,0 +1,30 @@
+{
+  "cli": {
+    "version": ">= 11.0.3"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "development-simulator": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_ZmxleGlibGUtZGFuZS01NC5jbGVyay5hY2NvdW50cy5kZXYk",
+        "EXPO_PUBLIC_GET_STREAM_API_KEY": "h2zxa3t3amct",
+        "EXPO_PUBLIC_API_URL": "https://www.example.com"
+      },
+      "ios": {
+        "simulator": true
+      }
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}
